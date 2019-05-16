@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="{% static 'css/elements.css' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	</head>
+	<body>
+        <div id="headcontent">
+			<section id="folder">
+				{{ current_folder }}
+			</section>
+            <section id="log">
+				<a href="/manager/log"><img src="{% static 'img/log.png' %}"></a>
+			</section>
+			<form  enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <label id="fileinput">
+				<input type="file" name="myfile" onchange="form.submit()"/>
+				</label>
+            </form>
+			<hr id="hr1"/>
+        </div>
+        <div id="space">
+        </div>
+            {% for content in contents %}
+                <div id="container">
+                    <section id="element">
+                        <a href="{{ content.name }}">{{ content.name }}</a>
+                    </section>
+                    <section id="delete">
+                        <a href="?delete={{ content.name }}"><img src="{% static 'img/delete.png' %}"></a>
+                    </section>
+                    <hr id="hr2"/>
+                    <section id="metadata">
+                        Type: {{ content.type }}<br/>
+                        Size: {{ content.size }} <br/>
+                        Created: {{ content.created }}<br/>
+                        Modified: {{ content.modified }}<br/>
+                        Accessed: {{ content.accessed }}
+                    </section>
+                </div>
+            {% endfor %}
+
+	</body>
+</html>
+
+
+

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="{% static 'css/elements.css' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	</head>
+	<body>
+        <div id="headcontent">
+			<section id="folder">
+				History
+			</section>
+			<hr id="hr1"/>
+        </div>
+        <div id="space">
+        </div>
+            {% for content in logs %}
+                <div id="container">
+                    <section id="element">
+                        {{ content.element }}
+                    </section>
+                    <hr id="hr2"/>
+                    <section id="metadata">
+                        Action: {{ content.action }}<br/>
+                        Date: {{ content.date }}<br/>
+                        Time: {{ content.time }}
+                    </section>
+                </div>
+            {% endfor %}
+	</body>
+</html>
